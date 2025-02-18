@@ -11,7 +11,6 @@ const EventList = () => {
 
   return (
     <div>
-      <h2>Community Events</h2>
       {events.length > 0 ? (
         events.map((event) => <EventCard key={event.id} event={event} />)
       ) : (
