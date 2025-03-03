@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db, collection, getDocs, query, where } from "../services/firebase";
+import { addToGoogleCalendar } from "../services/googleCalendar";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
@@ -36,6 +37,8 @@ const Dashboard = () => {
             <p><strong>Date:</strong> {event.eventDate}</p>
             <p><strong>Location:</strong> {event.eventLocation}</p>
             <a href={event.eventUrl} target="_blank" rel="noopener noreferrer">View Event</a>
+            <br />
+            <button onClick={() => addToGoogleCalendar(event)}>📅 Add to Google Calendar</button>
           </div>
         ))
       ) : (
