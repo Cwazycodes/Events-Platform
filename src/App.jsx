@@ -13,6 +13,7 @@ function App() {
         <Link to="/signin">Staff Sign In</Link>
       </nav>
       <Routes>
+        {/* Ensure Home is the first thing that appears */}
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/signin" element={<SignIn />} />
