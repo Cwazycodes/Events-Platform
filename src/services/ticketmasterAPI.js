@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://app.ticketmaster.com/discovery/v2/events.json";
-const API_KEY = process.env.REACT_APP_TICKETMASTER_API_KEY; // Get API key from .env
+const API_KEY = process.env.REACT_APP_TICKETMASTER_API_KEY; 
 
 export const fetchEvents = async (location = "New York") => {
   try {
