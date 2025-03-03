@@ -8,7 +8,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getEmailAndFetchEvents = async () => {
-            // Only ask for email once
             let email = localStorage.getItem("userEmail");
             if (!email) {
                 email = prompt("Enter your email to view your signed-up events:");

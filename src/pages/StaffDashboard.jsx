@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 const StaffDashboard = () => {
     const [events, setEvents] = useState([]);
     const [eventName, setEventName] = useState("");
+    const [eventDate, setEventDate] = useState("");
+    const [eventLocation, setEventLocation] = useState("");
+    const [eventImage, setEventImage] = useState("");
+    const [eventUrl, setEventUrl] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,21 +26,39 @@ const StaffDashboard = () => {
     }, [navigate]);
 
     const handleCreateEvent = async () => {
-        if (!eventName) return;
+        if (!eventName || !eventDate || !eventLocation || !eventImage || !eventUrl) {
+            alert("⚠️ Please fill out all fields before creating an event.");
+            return;
+        }
 
         try {
             const docRef = await addDoc(collection(db, "events"), {
                 name: eventName,
-                createdBy: auth.currentUser.email
+                createdBy: auth.currentUser.email,
+                eventDate,
+                eventLocation,
+                eventImage,
+                eventUrl
             });
 
-            const newEvent = { id: docRef.id, name: eventName, createdBy: auth.currentUser.email };
-
-            // Instantly update the UI
+            const newEvent = {
+                id: docRef.id,
+                name: eventName,
+                createdBy: auth.currentUser.email,
+                eventDate,
+                eventLocation,
+                eventImage,
+                eventUrl
+            };
+            
             setEvents((prevEvents) => [...prevEvents, newEvent]);
 
-            alert("✅ Event created!");
+            alert("✅ Event created successfully!");
             setEventName("");
+            setEventDate("");
+            setEventLocation("");
+            setEventImage("");
+            setEventUrl("");
         } catch (error) {
             console.error("🔥 Error creating event:", error);
         }
@@ -46,10 +68,9 @@ const StaffDashboard = () => {
         try {
             await deleteDoc(doc(db, "events", eventId));
 
-            // Instantly update the UI
             setEvents((prevEvents) => prevEvents.filter(event => event.id !== eventId));
 
-            alert("✅ Event deleted!");
+            alert("✅ Event deleted successfully!");
         } catch (error) {
             console.error("🔥 Error deleting event:", error);
         }
@@ -69,6 +90,30 @@ const StaffDashboard = () => {
                 value={eventName} 
                 onChange={(e) => setEventName(e.target.value)} 
             />
+            <input 
+                type="date" 
+                placeholder="Event Date" 
+                value={eventDate} 
+                onChange={(e) => setEventDate(e.target.value)} 
+            />
+            <input 
+                type="text" 
+                placeholder="Event Location" 
+                value={eventLocation} 
+                onChange={(e) => setEventLocation(e.target.value)} 
+            />
+            <input 
+                type="text" 
+                placeholder="Event Image URL" 
+                value={eventImage} 
+                onChange={(e) => setEventImage(e.target.value)} 
+            />
+            <input 
+                type="text" 
+                placeholder="Event URL" 
+                value={eventUrl} 
+                onChange={(e) => setEventUrl(e.target.value)} 
+            />
             <button onClick={handleCreateEvent}>Create Event</button>
 
             <h2>Manage Events</h2>
@@ -76,7 +121,11 @@ const StaffDashboard = () => {
                 events.map((event) => (
                     <div className="event-card" key={event.id}>
                         <h3>{event.name}</h3>
-                        <p>Created by: {event.createdBy}</p>
+                        <p><strong>Date:</strong> {event.eventDate}</p>
+                        <p><strong>Location:</strong> {event.eventLocation}</p>
+                        {event.eventImage && <img src={event.eventImage} alt={event.name} width="200px" />}
+                        <a href={event.eventUrl} target="_blank" rel="noopener noreferrer">View Event</a>
+                        <br />
                         <button onClick={() => handleDeleteEvent(event.id)}>❌ Delete</button>
                     </div>
                 ))

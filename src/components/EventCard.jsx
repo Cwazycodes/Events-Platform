@@ -14,10 +14,10 @@ const EventCard = ({ event }) => {
             userEmail,
             eventId: event.id,
             eventName: event.name,
-            eventUrl: event.url,
-            eventDate: event.dates?.start?.localDate,
-            eventLocation: event._embedded?.venues?.[0]?.name || "N/A",
-            eventImage: event.images?.[0]?.url || "" // Store event image
+            eventUrl: event.url || "#",
+            eventDate: event.dates?.start?.localDate || event.eventDate || "TBA",
+            eventLocation: event._embedded?.venues?.[0]?.name || event.eventLocation || "TBA",
+            eventImage: event.images?.[0]?.url || event.eventImage || "https://via.placeholder.com/300"
         });
 
         alert("✅ Successfully signed up for the event!");
@@ -27,6 +27,7 @@ const EventCard = ({ event }) => {
         alert("❌ Failed to sign up for event.");
     }
 };
+
 
 
   return (
