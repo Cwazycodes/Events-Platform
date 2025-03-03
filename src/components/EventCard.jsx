@@ -10,22 +10,24 @@ const EventCard = ({ event }) => {
     if (!userEmail) return;
 
     try {
-      await addDoc(collection(db, "signups"), {
-        userEmail,
-        eventId: event.id,
-        eventName: event.name,
-        eventUrl: event.url,
-        eventDate: event.dates?.start?.localDate,
-        eventLocation: event._embedded?.venues?.[0]?.name || "N/A",
-      });
+        await addDoc(collection(db, "signups"), {
+            userEmail,
+            eventId: event.id,
+            eventName: event.name,
+            eventUrl: event.url,
+            eventDate: event.dates?.start?.localDate,
+            eventLocation: event._embedded?.venues?.[0]?.name || "N/A",
+            eventImage: event.images?.[0]?.url || "" // Store event image
+        });
 
-      alert("✅ Successfully signed up for the event!");
-      setSignedUp(true);
+        alert("✅ Successfully signed up for the event!");
+        setSignedUp(true);
     } catch (error) {
-      console.error("🔥 Signup Error:", error);
-      alert("❌ Failed to sign up for event.");
+        console.error("🔥 Signup Error:", error);
+        alert("❌ Failed to sign up for event.");
     }
-  };
+};
+
 
   return (
     <div className="event-card">
