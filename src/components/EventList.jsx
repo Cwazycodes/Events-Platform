@@ -11,22 +11,23 @@ const EventList = () => {
   }, [location]);
 
   return (
-    <div>
-      <h2>Find Events</h2>
-      <input
+    <div className="container">
+    <h2>Find Events</h2>
+    <input
         type="text"
         placeholder="Enter a city"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
-      />
-      <button onClick={() => fetchEvents(location).then(setEvents)}>Search</button>
+    />
+    <button onClick={() => fetchEvents(location).then(setEvents)}>Search</button>
 
-      {events.length > 0 ? (
+    {events.length > 0 ? (
         events.map((event) => <EventCard key={event.id} event={event} />)
-      ) : (
+    ) : (
         <p>No events found...</p>
-      )}
-    </div>
+    )}
+</div>
+
   );
 };
 

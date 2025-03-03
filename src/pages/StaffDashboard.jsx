@@ -44,35 +44,36 @@ const StaffDashboard = () => {
   };
 
   return (
-    <div>
-      <h1>Staff Dashboard</h1>
-      <p>Welcome, {auth.currentUser?.email}</p>
+    <div className="dashboard">
+        <h1>Staff Dashboard</h1>
+        <p>Welcome, {auth.currentUser?.email}</p>
 
-      <button onClick={() => signOut(auth)}>Sign Out</button>
+        <button onClick={() => signOut(auth)}>Sign Out</button>
 
-      <h2>Create New Event</h2>
-      <input 
-        type="text" 
-        placeholder="Event Name" 
-        value={eventName} 
-        onChange={(e) => setEventName(e.target.value)} 
-      />
-      <button onClick={handleCreateEvent}>Create Event</button>
+        <h2>Create New Event</h2>
+        <input 
+            type="text" 
+            placeholder="Event Name" 
+            value={eventName} 
+            onChange={(e) => setEventName(e.target.value)} 
+        />
+        <button onClick={handleCreateEvent}>Create Event</button>
 
-      <h2>Manage Events</h2>
-      {events.length > 0 ? (
-        events.map((event) => (
-          <div key={event.id}>
-            <h3>{event.name}</h3>
-            <p>Created by: {event.createdBy}</p>
-            <button onClick={() => handleDeleteEvent(event.id)}>❌ Delete</button>
-          </div>
-        ))
-      ) : (
-        <p>No events created yet.</p>
-      )}
+        <h2>Manage Events</h2>
+        {events.length > 0 ? (
+            events.map((event) => (
+                <div className="event-card" key={event.id}>
+                    <h3>{event.name}</h3>
+                    <p>Created by: {event.createdBy}</p>
+                    <button onClick={() => handleDeleteEvent(event.id)}>❌ Delete</button>
+                </div>
+            ))
+        ) : (
+            <p>No events created yet.</p>
+        )}
     </div>
-  );
+);
+
 };
 
 export default StaffDashboard;

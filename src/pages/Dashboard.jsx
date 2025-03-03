@@ -28,24 +28,25 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Your Signed-Up Events</h1>
-      {events.length > 0 ? (
-        events.map((event) => (
-          <div key={event.eventId}>
-            <h3>{event.eventName}</h3>
-            <p><strong>Date:</strong> {event.eventDate}</p>
-            <p><strong>Location:</strong> {event.eventLocation}</p>
-            <a href={event.eventUrl} target="_blank" rel="noopener noreferrer">View Event</a>
-            <br />
-            <button onClick={() => addToGoogleCalendar(event)}>📅 Add to Google Calendar</button>
-          </div>
-        ))
-      ) : (
-        <p>No signed-up events yet.</p>
-      )}
+    <div className="dashboard">
+        <h1>Your Signed-Up Events</h1>
+        {events.length > 0 ? (
+            events.map((event) => (
+                <div className="event-card" key={event.eventId}>
+                    <h3>{event.eventName}</h3>
+                    <p><strong>Date:</strong> {event.eventDate}</p>
+                    <p><strong>Location:</strong> {event.eventLocation}</p>
+                    <a href={event.eventUrl} target="_blank" rel="noopener noreferrer">View Event</a>
+                    <br />
+                    <button onClick={() => addToGoogleCalendar(event)}>📅 Add to Google Calendar</button>
+                </div>
+            ))
+        ) : (
+            <p>No signed-up events yet.</p>
+        )}
     </div>
-  );
+);
+
 };
 
 export default Dashboard;

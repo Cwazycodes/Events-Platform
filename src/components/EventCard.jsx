@@ -28,9 +28,9 @@ const EventCard = ({ event }) => {
   };
 
   return (
-    <div>
+    <div className="event-card">
       <h3>{event.name}</h3>
-      {event.images && <img src={event.images[0].url} alt={event.name} width="200" />}
+      {event.images && <img src={event.images[0].url} alt={event.name} />}
       <p>{event.info || "No description available."}</p>
       <p><strong>Date:</strong> {event.dates?.start?.localDate}</p>
       <p><strong>Location:</strong> {event._embedded?.venues?.[0]?.name || "N/A"}</p>
@@ -40,7 +40,8 @@ const EventCard = ({ event }) => {
         {signedUp ? "Signed Up ✅" : "Sign Up for Event"}
       </button>
     </div>
-  );
+);
+
 };
 
 export default EventCard;

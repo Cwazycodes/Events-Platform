@@ -16,11 +16,12 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h1>Staff Sign In</h1>
-      <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+    <div className="signin-container">
+        <h1>Staff Sign In</h1>
+        <button onClick={handleGoogleSignIn}>Sign in with Google</button>
     </div>
-  );
+);
+
 };
 
 export default SignIn;
