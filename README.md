@@ -22,8 +22,10 @@ The **Events Platform** allows users to:
 ✅ **Staff Users**  
 - **Sign in with any Gmail account** to access the Staff Dashboard 
   I have created one for testing purposes: 
+  ```
   Email: ncstafftest@gmail.com
   Password: Northcoders123
+  ```
 - Create new events **(custom events are stored in Firebase)**  
 - Manage events (create & delete)  
 
