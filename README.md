@@ -20,14 +20,17 @@ The **Events Platform** allows users to:
 - View signed-up events on **My Events** page  
 
 ✅ **Staff Users**  
-- **Sign in with any Gmail account** to access the Staff Dashboard  
+- **Sign in with any Gmail account** to access the Staff Dashboard 
+  I have created one for testing purposes: 
+  Email: ncstafftest@gmail.com
+  Password: Northcoders123
 - Create new events **(custom events are stored in Firebase)**  
 - Manage events (create & delete)  
 
 ✅ **My Events (Test Account)**  
 - To see a list of signed-up events, sign in using:  
   ```
-  Email: test@gmail.com
+  Email: ncstafftest@gmail.com
   ```
 
 ✅ **Firebase Authentication**  

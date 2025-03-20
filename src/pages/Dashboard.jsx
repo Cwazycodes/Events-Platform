@@ -8,28 +8,27 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getEmailAndFetchEvents = async () => {
-            let email = localStorage.getItem("userEmail");
-            if (!email) {
-                email = prompt("Enter your email to view your signed-up events:");
-                if (!email) return;
-                localStorage.setItem("userEmail", email);
-            }
-
-            setUserEmail(email);
-
-            try {
-                const q = query(collection(db, "signups"), where("userEmail", "==", email));
-                const querySnapshot = await getDocs(q);
-                const eventsList = querySnapshot.docs.map(doc => doc.data());
-
-                setEvents(eventsList);
-            } catch (error) {
-                console.error("🔥 Error fetching events:", error);
-            }
+          const email = localStorage.getItem("userEmail");
+          if (!email) {
+            alert("Please sign up for an event first!");
+            return;
+          }
+          setUserEmail(email);
+      
+          try {
+            const q = query(collection(db, "signups"), where("userEmail", "==", email));
+            const querySnapshot = await getDocs(q);
+            const eventsList = querySnapshot.docs.map(doc => doc.data());
+      
+            setEvents(eventsList);
+          } catch (error) {
+            console.error("🔥 Error fetching events:", error);
+          }
         };
-
+      
         getEmailAndFetchEvents();
-    }, []);
+      }, []);
+      
 
     return (
         <div className="dashboard">
@@ -38,7 +37,7 @@ const Dashboard = () => {
                 events.map((event) => (
                     <div className="event-card" key={event.eventId}>
                         <h3>{event.eventName}</h3>
-                        {event.eventImage && <img src={event.eventImage} alt={event.eventName} />}
+                        {event.eventImage && <img src={event.eventImage} alt={event.eventName} loading="lazy"  />}
                         <p><strong>Date:</strong> {event.eventDate}</p>
                         <p><strong>Location:</strong> {event.eventLocation}</p>
                         <a href={event.eventUrl} target="_blank" rel="noopener noreferrer">View Event</a>

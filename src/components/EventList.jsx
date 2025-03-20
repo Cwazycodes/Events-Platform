@@ -5,7 +5,7 @@ import EventCard from "./EventCard";
 
 const EventList = () => {
     const [events, setEvents] = useState([]);
-    const [location, setLocation] = useState("New York"); 
+    const [location, setLocation] = useState("Manchester"); 
 
     useEffect(() => {
         const loadEvents = async () => {

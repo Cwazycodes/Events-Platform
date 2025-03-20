@@ -10,7 +10,7 @@ const EventDetails = ({ events }) => {
   return (
     <div>
       <h1>{event.name}</h1>
-      {event.images && <img src={event.images[0].url} alt={event.name} width="300" />}
+      {event.images && <img src={event.images[0].url} alt={event.name} width="300" loading="lazy" />}
       <p>{event.info || "No description available."}</p>
       <p><strong>Date:</strong> {event.dates?.start?.localDate}</p>
       <p><strong>Time:</strong> {event.dates?.start?.localTime || "TBA"}</p>

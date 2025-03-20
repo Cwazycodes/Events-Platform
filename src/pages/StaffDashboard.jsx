@@ -29,7 +29,8 @@ const StaffDashboard = () => {
         if (!eventName || !eventDate || !eventLocation || !eventImage || !eventUrl) {
             alert("⚠️ Please fill out all fields before creating an event.");
             return;
-        }
+          }
+          
 
         try {
             const docRef = await addDoc(collection(db, "events"), {
@@ -123,7 +124,7 @@ const StaffDashboard = () => {
                         <h3>{event.name}</h3>
                         <p><strong>Date:</strong> {event.eventDate}</p>
                         <p><strong>Location:</strong> {event.eventLocation}</p>
-                        {event.eventImage && <img src={event.eventImage} alt={event.name} width="200px" />}
+                        {event.eventImage && <img src={event.eventImage} alt={event.name} width="200px" loading="lazy" />}
                         <a href={event.eventUrl} target="_blank" rel="noopener noreferrer">View Event</a>
                         <br />
                         <button onClick={() => handleDeleteEvent(event.id)}>❌ Delete</button>
